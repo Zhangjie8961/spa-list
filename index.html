@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>myProject</title>
+    <!-- 引用handsontable -->
+    <link href="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.css" rel="stylesheet" media="screen">
+    <script src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
+    <!-- 引入 lib/echarts.custom.min.js -->
+    <script src="https://lib.baomitu.com/echarts/4.6.0/echarts.min.js"></script>
+</head>
+<body>
+   <div style='text-align: center;width:700px;margin:0 auto;'> 
+        <h1>2020语言排行榜</h1>
+        <div id="example"></div>
+        <div id="main" style="width: 600px;height:400px;"></div>
+    </div>  
+
+    <script>
+            var data = [
+                {riqi:'Java',address: '1', goods:'降',price: '-0.01%'},
+                {riqi:'C',address: '2', goods:'升',price: '+2.24%'},
+                {riqi:'Python',address: '3', goods:'升',price: '+1.41%'},
+                {riqi:'C++',address: '4', goods:'降',price: '-2.58%'},
+                {riqi:'C#',address: '5', goods:'升',price: '+2.07%'},
+                {riqi:'Visual Basic.NET',address: '6', goods:'降',price: '-1.17%'},
+                {riqi:'JavaScript',address: '7', goods:'降',price: '-0.85%'},
+                
+            ];   
+            var hot = new Handsontable(document.getElementById('example'),{
+                data: data,
+                colHeaders: ["语言名称","排名","升或降","变化幅度"], // 使用自定义列头
+                colWidths: 150, // 设置所有列宽为150像素
+                className: "htCenter htMiddle",
+            });
+
+    </script>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+   
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: 'JavaScript语言排名变化'
+            },
+            tooltip: {},
+            legend: {
+                data:['排名']
+            },
+            xAxis: {
+                data: ["2000","2005","2010","2015","2020",]
+            },
+            yAxis: {},
+            series: [{
+                name: '排名',
+                type: 'line',
+                data: [6,9,8,8,7]
+            }]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+</body>
+</html>
